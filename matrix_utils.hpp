@@ -1,3 +1,7 @@
+
+#ifndef MATRIX_UTILS_HPP
+#define MATRIX_UTILS_HPP
+
 #include <fstream>
 #include <stdexcept>
 
@@ -17,3 +21,5 @@ bool compare_matricies(const float* array_a, const float* array_b, int size) {
     for (int i = 0; i < size; ++i) {if (array_a[i] != array_b[i]) {return false;}}
     return true;
 }
+
+#endif
