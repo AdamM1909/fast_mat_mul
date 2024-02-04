@@ -1,0 +1,10 @@
+# Ignore compiled executables
+*.exe
+*.out
+*.so
+*.dll
+*.a
+*.o
+*
+!*.*
+*.bin
