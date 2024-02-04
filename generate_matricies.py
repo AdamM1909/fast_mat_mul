@@ -2,8 +2,8 @@ import numpy as np
 
 np.random.seed(0)
 # Generate random matrices
-matrix_a = np.random.rand(1048, 1048).astype(np.float32)
-matrix_b = np.random.rand(1048, 1048).astype(np.float32)
+matrix_a = np.random.rand(1024, 1024).astype(np.float32)
+matrix_b = np.random.rand(1024, 1024).astype(np.float32)
 matrix_c = matrix_a @ matrix_b 
 
 # Save matrices to files
