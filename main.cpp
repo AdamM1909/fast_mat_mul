@@ -3,6 +3,7 @@
 #include "matrix_utils.hpp" 
 #include "mat_mul_implementations.hpp"
 #include "benchmark/benchmark.h"
+// g++ main.cpp -std=c++11 -lbenchmark -lpthread -o main -march=native -ffast-math -O3
 
 static void BM_matmulImpl(benchmark::State& state) {
     // Create matrices and result matrix
