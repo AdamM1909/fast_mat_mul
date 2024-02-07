@@ -19,12 +19,17 @@ static void BM_matmulImpl(benchmark::State& state) {
     load_matrix(left, "matrix_a.bin", rows, columns);
     load_matrix(right, "matrix_b.bin", rows, columns);
 
-    for (auto _ : state) {matmulImpCacheAware<rows, columns, inner>(left, right, result);}
-    // for (auto _ : state) {matmulImplNaive<rows, columns, inner>(left, right, result);}
+    for (auto _ : state) {
+        state.PauseTiming();
+        std::fill_n(result, rows * columns, 0);
+        state.ResumeTiming();
+        const int tile_size = state.range(0);
+        matmulImplTiling<rows, columns, inner>(left, right, result, tile_size);
+        }
 
     // Check 
     load_matrix(check_result, "matrix_c.bin", rows, columns);
-    bool arrays_match = compare_matricies(check_result, result, rows*columns);
+    bool arrays_match = compare_matrices(check_result, result, rows*columns);
     std::cout << (arrays_match ? "********** Result is correct! **********" : " ********** Results do not match. ********** ") << std::endl;
 
      // Free allocated memory
@@ -35,6 +40,7 @@ static void BM_matmulImpl(benchmark::State& state) {
 }
 
 BENCHMARK(BM_matmulImpl)
-    ->Unit(benchmark::kMillisecond);
+    ->Unit(benchmark::kMillisecond)
+    ->Arg(19)->Arg(20)->Arg(21)->Arg(22)->Arg(23)->Arg(24);
 
 BENCHMARK_MAIN();

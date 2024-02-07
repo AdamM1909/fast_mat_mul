@@ -4,6 +4,7 @@
 
 #include <fstream>
 #include <stdexcept>
+#include <cmath>
 
 
 void load_matrix(float *matrix, const char* filename, int rows, int cols) {
@@ -17,8 +18,9 @@ void load_matrix(float *matrix, const char* filename, int rows, int cols) {
     }
 }
 
-bool compare_matricies(const float* array_a, const float* array_b, int size) {
-    for (int i = 0; i < size; ++i) {if (array_a[i] != array_b[i]) {return false;}}
+
+bool compare_matrices(const float* array_a, const float* array_b, int size, float tolerance=1e-5) {
+    for (int i = 0; i < size; ++i) {if (std::abs(array_a[i] - array_b[i]) > tolerance) {return false;}}
     return true;
 }
 
