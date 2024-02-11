@@ -2,7 +2,7 @@
 #define MATRIX_MULTIPLY_HPP
 
 template <int rows, int columns, int inners>
-void matmulImplNaive(const float* left, const float* right, float* result) {
+void mat_mul_niave(const float* left, const float* right, float* result) {
     for (int row = 0; row < rows; row++) {
         for (int col = 0; col < columns; col++) {
             for (int inner = 0; inner < inners; inner++) {
@@ -14,7 +14,7 @@ void matmulImplNaive(const float* left, const float* right, float* result) {
 }
 
 template <int rows, int columns, int inners>
-inline void matmulImpCacheAware(const float *left, const float *right, float *result) {
+inline void mat_mul_cache_aware(const float *left, const float *right, float *result) {
   for (int row = 0; row < rows; row++) {
     for (int inner = 0; inner < inners; inner++) {
       for (int col = 0; col < columns; col++) {
@@ -26,7 +26,7 @@ inline void matmulImpCacheAware(const float *left, const float *right, float *re
 }
 
 template <int rows, int columns, int inners>
-inline void matmulImplTiling(const float *left, const float *right, float *result,const int tileSize) {
+inline void mat_mul_tiled_1d(const float *left, const float *right, float *result,const int tileSize) {
   for (int innerTile = 0; innerTile < inners; innerTile += tileSize) {
     
     

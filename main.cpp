@@ -24,13 +24,13 @@ static void BM_matmulImpl(benchmark::State& state) {
         std::fill_n(result, rows * columns, 0);
         state.ResumeTiming();
         const int tile_size = state.range(0);
-        matmulImplTiling<rows, columns, inner>(left, right, result, tile_size);
+        mat_mul_tiled_1d<rows, columns, inner>(left, right, result, tile_size);
         }
 
     // Check 
     load_matrix(check_result, "matrix_c.bin", rows, columns);
     bool arrays_match = compare_matrices(check_result, result, rows*columns);
-    std::cout << (arrays_match ? "********** Result is correct! **********" : " ********** Results do not match. ********** ") << std::endl;
+    std::cout << (arrays_match ? "********** Result is correct. **********" : " ********** Results do not match. ********** ") << std::endl;
 
      // Free allocated memory
     delete[] left;
