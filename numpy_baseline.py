@@ -19,12 +19,11 @@ flop = 2 * A.shape[0]**3
 flops = flop / mean_tms
 
 
+print(f'Numpy TFLOPs: {flops / 1e12: .2f} | Time {mean_tms:.4f}s')
 
-print(f'TFLOPs: {flops / 1e12: .2f} | Time {mean_tms:.4f}s')
+
 # print(np.__config__.show())
 # print(np.show_config())
-
-
 
 # Numpy: fp32
 # 220-240 GLOPs with standard numpy
