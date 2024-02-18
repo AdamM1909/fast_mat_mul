@@ -21,7 +21,9 @@ flops = flop / t
 
 print(f'METAL TFLOPs: {flops / 1e12: .6f} | Time {t:.4f}s')
 
-# Kernel from TinyGrad
+# METAL benchamark 1.5TFLOPS, slightly less than accelerate numpy.
+
+# Kernel from TinyGrad DEBUG = 5
 
 # template<typename T, typename S, typename U> U __metal_wmma(T m, T n, U o) {
 #   S a,b,c; a.thread_elements()[0] = m.x; a.thread_elements()[1] = m.y; b.thread_elements()[0] = n.x; b.thread_elements()[1] = n.y;
